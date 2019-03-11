@@ -18,7 +18,7 @@ body {
 
 #player_wrapper {
   position: relative;
-  box-shadow: 0 0 1px 10px rgba(255,255,255,0.5);
+  box-shadow: 0 0 1px 20px #002271;
   background: #000;
 }
 
@@ -30,10 +30,14 @@ body {
   height: calc(100% - 90px);
 }
 
+#canvas > * {
+  position: absolute;
+}
+
 #rick {
   transform-origin: 0 0;
 }
 
 #morty {
-  transform-origin: 0 0;
+  transform-origin: 50% 50%;
 }
