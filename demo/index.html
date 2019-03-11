@@ -1,0 +1,483 @@
+<!--
+  https://github.com/sampotts/plyr
+  https://animejs.com/documentation
+-->
+<html>
+
+<head>
+  <title>Code Challenge: You Gotta Make a Movie</title>
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.5.2/plyr.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Scripts -->
+  <script src="https://cdn.plyr.io/3.5.2/plyr.js"></script>
+  <script src="anim.min.js"></script>
+</head>
+
+<body>
+  <div id="player_wrapper">
+    <video id="player" src="assets/titanic.mp4" controls></video>
+
+    <!-- Your Scene -->
+    <div id="canvas">
+      <img id="rick" src="assets/rick.png" />
+      <img id="morty" src="assets/morty.png" />
+    </div>
+  </div>
+
+  <script>
+    var rickFrames = [{
+      "height": 140,
+      "rotate": 0,
+      "translateX": 499.5,
+      "translateY": 225.5,
+      "duration": 0,
+      "minute": 0
+    }, {
+      "translateX": 502.5,
+      "translateY": 210.5,
+      "duration": 500,
+      "minute": 500
+    }, {
+      "translateX": 492.5,
+      "translateY": 217.5,
+      "duration": 500,
+      "minute": 1000
+    }, {
+      "translateX": 507.5,
+      "translateY": 224.5,
+      "duration": 500,
+      "minute": 1500
+    }, {
+      "rotate": -10,
+      "translateX": 490.5,
+      "translateY": 220.5,
+      "duration": 500,
+      "minute": 2000
+    }, {
+      "rotate": 5,
+      "translateX": 524.5,
+      "translateY": 200.5,
+      "duration": 500,
+      "minute": 2500
+    }, {
+      "translateX": 530.5,
+      "translateY": 206.5,
+      "duration": 500,
+      "minute": 3000
+    }, {
+      "rotate": -13,
+      "translateX": 492.5,
+      "translateY": 241.5,
+      "duration": 500,
+      "minute": 3500
+    }, {
+      "height": 150,
+      "translateX": 478.5,
+      "translateY": 240.5,
+      "duration": 500,
+      "minute": 4000
+    }, {
+      "rotate": -17,
+      "translateX": 478.5,
+      "translateY": 240.5,
+      "duration": 500,
+      "minute": 4500
+    }, {
+      "translateX": 478.5,
+      "translateY": 240.5,
+      "duration": 500,
+      "minute": 5000
+    }, {
+      "translateX": 478.5,
+      "translateY": 240.5,
+      "duration": 500,
+      "minute": 5500
+    }, {
+      "height": 160,
+      "rotate": -12,
+      "translateX": 474.5,
+      "translateY": 236.5,
+      "duration": 500,
+      "minute": 6000
+    }, {
+      "height": 170,
+      "translateX": 450.5,
+      "translateY": 260.5,
+      "duration": 500,
+      "minute": 6500
+    }, {
+      "translateX": 514.5,
+      "translateY": 293.5,
+      "duration": 500,
+      "minute": 7000
+    }, {
+      "translateX": 516.5,
+      "translateY": 301.5,
+      "duration": 500,
+      "minute": 7500
+    }, {
+      "translateX": 517.5,
+      "translateY": 292.5,
+      "duration": 500,
+      "minute": 8000
+    }, {
+      "translateX": 515.5,
+      "translateY": 253.5,
+      "duration": 500,
+      "minute": 8500
+    }, {
+      "translateX": 498.5,
+      "translateY": 223.5,
+      "duration": 500,
+      "minute": 9000
+    }, {
+      "translateX": 508.5,
+      "translateY": 227.5,
+      "duration": 500,
+      "minute": 9500
+    }, {
+      "translateX": 512.5,
+      "translateY": 244.5,
+      "duration": 500,
+      "minute": 10000
+    }, {
+      "translateX": 525.5,
+      "translateY": 255.5,
+      "duration": 500,
+      "minute": 10500
+    }, {
+      "translateX": 529.5,
+      "translateY": 256.5,
+      "duration": 500,
+      "minute": 11000
+    }, {
+      "translateX": 494.5,
+      "translateY": 273.5,
+      "duration": 500,
+      "minute": 11500
+    }, {
+      "translateX": 454.5,
+      "translateY": 280.5,
+      "duration": 500,
+      "minute": 12000
+    }, {
+      "translateX": 451.5,
+      "translateY": 291.5,
+      "duration": 500,
+      "minute": 12500
+    }, {
+      "translateX": 428.5,
+      "translateY": 280.5,
+      "duration": 500,
+      "minute": 13000
+    }];
+    var mortyFrames = [{
+      "translateX": 599.5,
+      "translateY": 202.5,
+      "duration": 0,
+      "minute": 0
+    }, {
+      "translateX": 590.5,
+      "translateY": 199.5,
+      "duration": 500,
+      "minute": 500
+    }, {
+      "translateX": 583.5,
+      "translateY": 201.5,
+      "duration": 500,
+      "minute": 1000
+    }, {
+      "translateX": 602.5,
+      "translateY": 211.5,
+      "duration": 500,
+      "minute": 1500
+    }, {
+      "translateX": 608.5,
+      "translateY": 201.5,
+      "duration": 500,
+      "minute": 2000
+    }, {
+      "translateX": 616.5,
+      "translateY": 194.5,
+      "duration": 500,
+      "minute": 2500
+    }, {
+      "translateX": 619.5,
+      "translateY": 207.5,
+      "duration": 500,
+      "minute": 3000
+    }, {
+      "translateX": 609.5,
+      "translateY": 219.5,
+      "duration": 500,
+      "minute": 3500
+    }, {
+      "translateX": 606.5,
+      "translateY": 232.5,
+      "duration": 500,
+      "minute": 4000
+    }, {
+      "translateX": 609.5,
+      "translateY": 233.5,
+      "duration": 500,
+      "minute": 4500
+    }, {
+      "translateX": 620.5,
+      "translateY": 234.5,
+      "duration": 500,
+      "minute": 5000
+    }, {
+      "translateX": 639.5,
+      "translateY": 232.5,
+      "duration": 500,
+      "minute": 5500
+    }, {
+      "translateX": 645.5,
+      "translateY": 231.5,
+      "duration": 500,
+      "minute": 6000
+    }, {
+      "translateX": 645.5,
+      "translateY": 253.5,
+      "duration": 500,
+      "minute": 6500
+    }, {
+      "translateX": 641.5,
+      "translateY": 276.5,
+      "duration": 500,
+      "minute": 7000
+    }, {
+      "translateX": 639.5,
+      "translateY": 284.5,
+      "duration": 500,
+      "minute": 7500
+    }, {
+      "translateX": 637.5,
+      "translateY": 277.5,
+      "duration": 500,
+      "minute": 8000
+    }, {
+      "translateX": 627.5,
+      "translateY": 249.5,
+      "duration": 500,
+      "minute": 8500
+    }, {
+      "translateX": 608.5,
+      "translateY": 223.5,
+      "duration": 500,
+      "minute": 9000
+    }, {
+      "translateX": 636.5,
+      "translateY": 228.5,
+      "duration": 500,
+      "minute": 9500
+    }, {
+      "translateX": 651.5,
+      "translateY": 240.5,
+      "duration": 500,
+      "minute": 10000
+    }, {
+      "translateX": 687.5,
+      "translateY": 255.5,
+      "duration": 500,
+      "minute": 10500
+    }, {
+      "translateX": 679.5,
+      "translateY": 255.5,
+      "duration": 500,
+      "minute": 11000
+    }, {
+      "translateX": 658.5,
+      "translateY": 273.5,
+      "duration": 500,
+      "minute": 11500
+    }, {
+      "translateX": 629.5,
+      "translateY": 278.5,
+      "duration": 500,
+      "minute": 12000
+    }, {
+      "translateX": 642.5,
+      "translateY": 293.5,
+      "duration": 500,
+      "minute": 12500
+    }, {
+      "translateX": 633.5,
+      "translateY": 284.5,
+      "duration": 500,
+      "minute": 13000
+    }];
+    var rickHeight = 140;
+    var rickWidth = 120;
+    var mortyHeight = 100;
+    var mortyWidth = 100;
+
+    var rickAnimation = {
+      targets: '#rick',
+      opacity: [{
+          value: 1,
+          duration: 13230
+        },
+        {
+          value: 0,
+          duration: 0
+        }
+      ],
+      height: rickFrames.map(function (point, idx) {
+        var obj = {
+          duration: point.duration || (idx ? 50 : 0)
+        };
+
+        if (point.height) {
+          obj.value = point.height;
+        }
+
+        return obj;
+      }),
+      translateX: rickFrames.map(function (point, idx) {
+        var obj = {
+          duration: point.duration || (idx ? 50 : 0)
+        };
+
+        if (point.translateX) {
+          obj.value = point.translateX - (rickWidth / 1.5);
+        }
+
+        return obj;
+      }),
+      translateY: rickFrames.map(function (point, idx) {
+        var obj = {
+          duration: point.duration || (idx ? 50 : 0)
+        };
+
+        if (point.translateY) {
+          obj.value = point.translateY - (rickHeight / 1.5);
+        }
+
+        return obj;
+      }),
+      rotate: rickFrames.map(function (point, idx) {
+        var obj = {
+          duration: point.duration || (idx ? 50 : 0)
+        };
+
+        if (point.rotate) {
+          obj.value = point.rotate;
+        }
+
+        return obj;
+      }),
+    };
+
+    var mortyAnimation = {
+      targets: '#morty',
+      height: [{
+        value: 100,
+        duration: 0
+      }, ],
+      opacity: [{
+          value: 1,
+          duration: 13230
+        },
+        {
+          value: 0,
+          duration: 0
+        }
+      ],
+      translateX: mortyFrames.map(function (point, idx) {
+        var obj = {
+          duration: point.duration || (idx ? 50 : 0)
+        };
+
+        if (point.translateX) {
+          obj.value = point.translateX - (mortyWidth * 1.7);
+        }
+
+        return obj;
+      }),
+      translateY: mortyFrames.map(function (point, idx) {
+        var obj = {
+          duration: point.duration || (idx ? 50 : 0)
+        };
+
+        if (point.translateY) {
+          obj.value = point.translateY - (mortyHeight);
+        }
+
+        return obj;
+      }),
+    };
+
+    var rickTl = anime.timeline({
+      duration: 20000,
+      easing: 'linear',
+      autoplay: false,
+    }).add(rickAnimation);
+
+    var mortyTl = anime.timeline({
+      duration: 20000,
+      easing: 'linear',
+      autoplay: false,
+    }).add(mortyAnimation);
+
+    const player = new Plyr('#player', {
+      controls: ['play', 'play-large', 'progress', 'current-time', 'mute', 'volume'], // 'fullscreen'
+      // debug: true,
+      keyboard: {
+        focused: true,
+        global: true
+      },
+      seekTime: 0.5,
+      invertTime: false
+    });
+
+    player.on('play', event => {
+      rickTl.play();
+      mortyTl.play();
+      duration = Date.now();
+    });
+
+    player.on('pause', event => {
+      rickTl.pause();
+      mortyTl.pause();
+      console.log('Paused at: ', player.currentTime * 1000);
+    });
+
+    player.on('seeking', event => {
+      rickTl.seek(player.currentTime * 1000);
+      mortyTl.seek(player.currentTime * 1000);
+    });
+
+    player.on('seeked', event => {
+      console.log('Paused at: ', player.currentTime * 1000);
+    });
+
+    // My Code
+    var canvas = document.getElementById('canvas');
+    var points = [];
+    var duration = player.currentTime * 1000;
+
+    canvas.addEventListener('click', function (e) {
+      var bounding = canvas.getBoundingClientRect();
+      var now = player.currentTime * 1000;
+      if (now < 0) {
+        now = 0;
+      }
+
+      points.push({
+        translateX: e.pageX - bounding.x,
+        translateY: e.pageY - bounding.y,
+        duration: now - duration,
+        minute: now
+      });
+
+      duration = now;
+
+      console.log('points', JSON.stringify(points));
+    });
+  </script>
+</body>
+
+</html>

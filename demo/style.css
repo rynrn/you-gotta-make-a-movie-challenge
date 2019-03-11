@@ -1,0 +1,39 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: #062874 url(assets/bg.png) repeat top center;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+#player_wrapper {
+  position: relative;
+  box-shadow: 0 0 1px 10px rgba(255,255,255,0.5);
+  background: #000;
+}
+
+#canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(100% - 90px);
+}
+
+#rick {
+  transform-origin: 0 0;
+}
+
+#morty {
+  transform-origin: 0 0;
+}
