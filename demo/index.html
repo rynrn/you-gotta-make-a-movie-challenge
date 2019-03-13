@@ -18,6 +18,7 @@
 <body>
   <div id="player_wrapper">
     <video id="player" src="assets/titanic.mp4" controls></video>
+    <audio id="sound_player" src="assets/soundtrack.mp3" controls></audio>
 
     <!-- Your Scene -->
     <div id="canvas">
@@ -448,36 +449,58 @@
       autoplay: false,
     }).add(mortyAnimation);
 
-    const player = new Plyr('#player', {
+    const videoPlayer = new Plyr('#player', {
       controls: ['play', 'play-large', 'progress', 'current-time', 'mute', 'volume'], // 'fullscreen'
       // debug: true,
       keyboard: {
         focused: true,
         global: true
       },
+      muted: true,
       seekTime: 0.5,
       invertTime: false
     });
 
-    player.on('play', event => {
+    const soundPlayer = new Plyr('#sound_player', {
+      controls: [],
+      // debug: true,
+      keyboard: {
+        focused: false,
+        global: false
+      },
+      volume: 1,
+      seekTime: 0.5
+    });
+    var firstPlay = true;
+
+    videoPlayer.on('play', event => {
       rickTl.play();
       mortyTl.play();
+      soundPlayer.play();
       duration = Date.now();
+      videoPlayer.volume = 0;
+      if (firstPlay) {
+        soundPlayer.currentTime = 4.8;
+        firstPlay = false;
+      }
     });
 
-    player.on('pause', event => {
+    videoPlayer.on('pause', event => {
       rickTl.pause();
       mortyTl.pause();
-      console.log('Paused at: ', player.currentTime * 1000);
+      videoPlayer.volume = 1;
+      soundPlayer.pause();
+      console.log('Paused at: ', videoPlayer.currentTime * 1000);
     });
 
-    player.on('seeking', event => {
-      rickTl.seek(player.currentTime * 1000);
-      mortyTl.seek(player.currentTime * 1000);
+    videoPlayer.on('seeking', event => {
+      rickTl.seek(videoPlayer.currentTime * 1000);
+      mortyTl.seek(videoPlayer.currentTime * 1000);
+      soundPlayer.currentTime = videoPlayer.currentTime;
     });
 
-    player.on('seeked', event => {
-      console.log('Paused at: ', player.currentTime * 1000);
+    videoPlayer.on('seeked', event => {
+      console.log('Paused at: ', videoPlayer.currentTime * 1000);
     });
 
     // My Code
