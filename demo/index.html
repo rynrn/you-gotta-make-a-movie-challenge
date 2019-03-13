@@ -449,36 +449,41 @@
       autoplay: false,
     }).add(mortyAnimation);
 
-    const videoPlayer = new Plyr('#player', {
+    var firstPlay = true;
+    var videoPlayer = new Plyr('#player', {
       controls: ['play', 'play-large', 'progress', 'current-time', 'mute', 'volume'], // 'fullscreen'
       // debug: true,
       keyboard: {
         focused: true,
         global: true
       },
-      muted: true,
+      storage: {
+        enabled: false
+      },
+      volume: 0,
       seekTime: 0.5,
       invertTime: false
     });
 
-    const soundPlayer = new Plyr('#sound_player', {
+    var soundPlayer = new Plyr('#sound_player', {
       controls: [],
       // debug: true,
       keyboard: {
         focused: false,
         global: false
       },
+      storage: {
+        enabled: false
+      },
       volume: 1,
       seekTime: 0.5
     });
-    var firstPlay = true;
 
     videoPlayer.on('play', event => {
       rickTl.play();
       mortyTl.play();
       soundPlayer.play();
       duration = Date.now();
-      videoPlayer.volume = 0;
       if (firstPlay) {
         soundPlayer.currentTime = 4.8;
         firstPlay = false;
@@ -488,7 +493,6 @@
     videoPlayer.on('pause', event => {
       rickTl.pause();
       mortyTl.pause();
-      videoPlayer.volume = 1;
       soundPlayer.pause();
       console.log('Paused at: ', videoPlayer.currentTime * 1000);
     });
