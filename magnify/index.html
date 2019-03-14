@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <video class="main-vid" width="800" autoplay>
+      <source src="../scenes/oscar.mp4" type="video/mp4">
+    </video>
+    <div class="big-vid-wrapper">
+      <video class="big-vid" width="2400" autoplay>
+        <source src="../scenes/oscar.mp4" type="video/mp4">
+      </video>
+      <img  src="http://www.google.com/logos/2011/worldsfair11-hp.png">
+    </div>
+  </div>
+
+  <select class="filter">
+    <option value="gray">gray</option>
+    <option value="blur">blur</option>
+    <option value="sepia">sepia</option>
+    <option value="invert">invert</option>
+  </select>
+
+  <script>
+    let bigWrapper = document.querySelector('.big-vid-wrapper');
+    let bigVid = document.querySelector('.big-vid')
+    let mainVid = document.querySelector('.main-vid')
+    mainVidRect = mainVid.getBoundingClientRect();
+    document.addEventListener('mousemove', function(e){
+      const X = e.clientX - mainVidRect.x,
+              Y = e.clientY - mainVidRect.y,
+              delta = 150;
+
+      bigWrapper.style.left = X-delta + 'px';
+      bigWrapper.style.top = Y-delta + 'px';
+      bigVid.style.left = -((X*3) - delta) + 'px';
+      bigVid.style.top = -((Y*3) - delta) + 'px';
+    })
+
+    document.querySelector('.filter').addEventListener('change', function(event){
+      switch(event.target.value){
+        case 'gray' :
+          bigVid.style.filter = 'grayscale(100%)'
+          break;
+        case 'blur' :
+          bigVid.style.filter = 'blur(100%)'
+          break;
+        case 'sepia' :
+          bigVid.style.filter = 'sepia(100%)'
+          break;
+        case 'invert' :
+          bigVid.style.filter = 'invert(100%)'
+          break;
+
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>

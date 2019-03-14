@@ -1,0 +1,53 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #062874 url(assets/bg.png) repeat top center;
+}
+
+.big-vid-wrapper {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: none;
+  filter: saturate(100%);
+}
+
+.big-vid-wrapper > img {
+  position: absolute;
+  z-index: 100;
+  width: 300px;
+  height: 300px;
+}
+
+video {
+  position: absolute;
+  cursor: none;
+}
+
+.main-vid {
+
+}
+
+select{
+  position: absolute;
+  right: 0;
+}
+
+.main-wrapper {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 800px;
+  height: 450px;
+}
