@@ -6,57 +6,86 @@
 
 <body>
   <div class="main-wrapper">
-    <video class="main-vid" width="800" autoplay>
+    <video class="main-vid">
       <source src="../scenes/oscar.mp4" type="video/mp4">
     </video>
     <div class="big-vid-wrapper">
-      <video class="big-vid" width="2400" autoplay>
+      <video class="big-vid">
         <source src="../scenes/oscar.mp4" type="video/mp4">
       </video>
       <img  src="http://www.google.com/logos/2011/worldsfair11-hp.png">
     </div>
   </div>
+  <div class="controls">
+    <div class="radio-filter-wrapper">
+      <h2>Add a filter</h2>
+      <input type="radio" name="filter" value="grayscale" id="radio-gray" class="form-radio"><label for="radio-gray">grayscale</label>
+      <input type="radio" name="filter" value="saturate" id="radio-saturate" class="form-radio"><label for="radio-saturate">saturate</label>
+      <input type="radio" name="filter" value="sepia" id="radio-sepia" class="form-radio"><label for="radio-sepia">sepia</label>
+      <input type="radio" name="filter" value="invert" id="radio-invert" class="form-radio"><label for="radio-invert">invert</label>
+      <input type="radio" name="filter" value="invert" id="radio-brightness" class="form-radio"><label for="radio-brightness">brightness</label>
+    </div>
+    <div class="radio-zoom-wrapper">
+      <h2>Zoom</h2>
+      <input type="radio" name="zoom" value="1" id="radio-x1" class="form-radio"><label for="radio-x1">1X</label>
+      <input type="radio" name="zoom" value="2" id="radio-x2" class="form-radio"><label for="radio-x2" selected>2X</label>
+      <input type="radio" name="zoom" value="3" id="radio-x3" class="form-radio"><label for="radio-x3">3X</label>
+      <input type="radio" name="zoom" value="4" id="radio-x4" class="form-radio"><label for="radio-x4">4X</label>
+    </div>
+  </div>
 
-  <select class="filter">
-    <option value="gray">gray</option>
-    <option value="blur">blur</option>
-    <option value="sepia">sepia</option>
-    <option value="invert">invert</option>
-  </select>
 
   <script>
+    let bigWidth;
+    let mainWidth = 800;
+    document.documentElement.style.setProperty('--main-width', mainWidth + "px");
+    setVideoZoom(mainWidth * 2);
     let bigWrapper = document.querySelector('.big-vid-wrapper');
     let bigVid = document.querySelector('.big-vid')
     let mainVid = document.querySelector('.main-vid')
-    mainVidRect = mainVid.getBoundingClientRect();
-    document.addEventListener('mousemove', function(e){
-      const X = e.clientX - mainVidRect.x,
-              Y = e.clientY - mainVidRect.y,
-              delta = 150;
 
-      bigWrapper.style.left = X-delta + 'px';
-      bigWrapper.style.top = Y-delta + 'px';
-      bigVid.style.left = -((X*3) - delta) + 'px';
-      bigVid.style.top = -((Y*3) - delta) + 'px';
-    })
+    function setVideoZoom(zoomSize) {
+      bigWidth = zoomSize;
+      document.documentElement.style.setProperty('--big-width', bigWidth + "px");
+    }
 
-    document.querySelector('.filter').addEventListener('change', function(event){
-      switch(event.target.value){
-        case 'gray' :
-          bigVid.style.filter = 'grayscale(100%)'
-          break;
-        case 'blur' :
-          bigVid.style.filter = 'blur(100%)'
-          break;
-        case 'sepia' :
-          bigVid.style.filter = 'sepia(100%)'
-          break;
-        case 'invert' :
-          bigVid.style.filter = 'invert(100%)'
-          break;
+    function play() {
+      bigVid.play();
+      mainVid.play();
+      document.documentElement.removeEventListener('click', play);
+    }
 
-      }
-    })
+
+
+    document.documentElement.addEventListener('click', play);
+
+    function init() {
+      const mainVidRect = mainVid.getBoundingClientRect();
+      document.addEventListener('mousemove', function(e){
+        const X = e.clientX - mainVidRect.x,
+                Y = e.clientY - mainVidRect.y,
+                delta = 150;
+
+        bigWrapper.style.left = X-delta + 'px';
+        bigWrapper.style.top = Y-delta + 'px';
+        bigVid.style.left = -((X*(bigWidth / mainWidth)) - delta) + 'px';
+        bigVid.style.top = -((Y*(bigWidth / mainWidth)) - delta) + 'px';
+      })
+
+      document.querySelectorAll('.form-radio').forEach(radioBtn => {
+
+        radioBtn.addEventListener('change', function(event){
+          if (event.target.name === 'filter') {
+            bigVid.style.filter = `${event.target.value}(100%)`
+          } else {
+            const val = parseInt(event.target.value);
+            setWidths(mainWidth, val * mainWidth);
+          }
+        })
+      })
+    }
+
+    init();
 
 
   </script>
