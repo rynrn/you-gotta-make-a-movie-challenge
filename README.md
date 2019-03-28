@@ -34,7 +34,7 @@ Please follow the guidlines below:
 
 # How to Submit Your Work?
 
-1. Fork [this](https://github.com/outbrain/tech-companies-logos-in-css) repo.
+1. Fork [this](https://github.com/outbrain/you-gotta-make-a-movie-challenge) repo.
 2. Navigate to the "**submissions**" folder, and create a new folder with your team's name. Folder name should be lowercased and without spaces (use dashed instead. For example: "tsachi-daniel", or "team-awesome").
 3. Add all relevant files to your folder, **including a `README.md` file** with an overview and instructions about your project.
 4. Add your submission to the **list of submissions** in the `README.md` file under the `submissions` folder.
