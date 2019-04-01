@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/outbrain/tech-companies-logos-in-css/master/assets/guild.png" height=200 />
+  <img src="./you-gotta-make-a-movie.jpg" width="70%" />
 </p>
 
 # You Gotta Make a Movie Night Challenge
@@ -46,3 +46,7 @@ If you have any questions, feel free to reach out. Outbrain's team is here to he
 **Winners will be announced at the end of the event!**
 
 **Good Luck!** 🔥
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/outbrain/tech-companies-logos-in-css/master/assets/guild.png" height=200 />
+</p>
