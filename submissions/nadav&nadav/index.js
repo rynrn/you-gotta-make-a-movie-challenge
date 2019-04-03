@@ -2,12 +2,14 @@ import * as cocoSsd from '@tensorflow-models/coco-ssd';
 
 const vid = document.getElementById('vid');
 const title = document.getElementById('title');
+const btn = document.getElementById('btn');
 let model;
 async function init () {
 
   // Load the model.
   model = await cocoSsd.load();
 }
+
 
 init()
 
@@ -28,4 +30,13 @@ async function run () {
 
 }
 
-setInterval(run, 100);
+// setInterval(run, 100);
+
+let isRun = false;
+function btnClick() {
+  if (isRun) return;
+  isRun = true;
+  vid.play();
+  setInterval(run, 100);
+};
+btn.addEventListener('click', btnClick)
