@@ -21,7 +21,7 @@ Please follow the guidlines below:
 - We provide 5 default base scenes (could be found in the `scenes` folder), and you may either use them or bring one of your own.
 - The final video result should be no longer than **20 seconds**.
 - Feel free to use **any** frontend technology you want.
-- The enrty point to your work should be an `index.html` file.
+- The entry point to your work should be an `index.html` file.
 - Your code should run on the latest version of Chrome.
 - **Do not** violate copyrights by sharing your work in public (or outside of YGLF).
 
