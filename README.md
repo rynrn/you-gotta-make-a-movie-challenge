@@ -27,15 +27,16 @@ Please follow the guidlines below:
 
 # How to Win?
 
-- We're looking for creativity and innovation, as well as concepts that will blow our mind.
-- Add sounds, subtitles, change the original video and manipulate it, that's exactly what we wanna see.
+- We're looking for creativity and innovation, as well as concepts that will blow our mind off.
+- Add sounds, subtitles, change the original video and manipulate it, that's exactly what we want to see.
 - You'll get extra bonus for using advanced web technology such as Tensorflow, image manipulation, sound editing, etc.
-- Frontend jokes are more than welcome (as long as they are not offensive).
+- Frontend jokes are more than welcome, as long as they are not offensive. and funny.
+- Be ready for a 60 seconds presentation at the end of the event.
 
 # How to Submit Your Work?
 
 1. Fork [this](https://github.com/outbrain/you-gotta-make-a-movie-challenge) repo.
-2. Navigate to the "**submissions**" folder, and create a new folder with your team's name. Folder name should be lowercased and without spaces (use dashed instead. For example: "tsachi-daniel", or "team-awesome").
+2. Navigate to the "**submissions**" folder, and create a new folder with your team's name. Folder name should be lowercased and without spaces or special characters (use dashed instead. For example: "tsachi-daniel", or "team-awesome").
 3. Add all relevant files to your folder, **including a `README.md` file** with an overview and instructions about your project.
 4. Add your submission to the **[list of submissions](https://github.com/outbrain/you-gotta-make-a-movie-challenge/tree/master/submissions)** in the `README.md` file under the `submissions` folder.
 4. Once your code is ready, commited, and pushed, create a pull request, and ping us to make sure we merge it to the `master` branch.
